@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html id="linear-gradient">
+<body>
+
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="ToggleSwitch.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="ToggleSwitch.js"></script>
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <ul>
+  <li><a class="active" href="#home">ReallyHigh Project</a></li>
+  <li><a href="#temperature">Temperature</a></li>
+  <li><a href="#humidity">Humidity</a></li>
+  <li><a href="#lights">Lights</a></li>
+  <li><a href="#moisture">Moisture Control</a></li>
+  <li><a href="#lights">Fans</a></li>
+  </ul>
+
+  <div class="containerTemp">
+    <div class="de">
+        <div class="den">
+          <div class="dene">
+            <div class="denem">
+              <div class="deneme">
+                23<span>.9</span><strong>&deg;</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="containerHum">
+  <div class="de">
+      <div class="den">
+        <div class="dene">
+          <div class="denem">
+            <div class="deneme">
+              50<span>.9</span><strong>&deg;</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="containerMoistureTable">
+  <table class="moistureTable">
+  <thead>
+
+  </thead>
+
+  <tbody>
+  <tr>
+  <td>Plant 1</td>
+  <td>1000</td>
+  </tr>
+  <tr>
+  <td>Plant 2</td>
+  <td>1000</td>
+  </tr>
+  <tr>
+  <td>Plant 3</td>
+  <td>500</td>
+  </tr>
+  <tr>
+  <td>Plant 4</td>
+  <td>800</td>
+  </tr>
+  <tr>
+  <td>Plant 5</td>
+  <td>900</td>
+  </tr>
+  <tr>
+  <td>Plant 6</td>
+  <td>1020</td>
+  </tr>
+  </tbody>
+  </table>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="cTemp">
+  Temperature
+  <input type="number" step="0.01" id="temperatureID" name="Temperature" value="" >
+  <input type="button" onclick="importTemp()" value="Submit">
+  </div>
+  <br>
+  <div class="cHum">Custom Humidity
+  <input type="number" step="0.01" id="humidityID" name="Humidity" value="">
+  <input type="button" onclick="importHum()" value="Submit">
+  </div>
+ <div class="cLightOn">Light on at time
+ <input type="time" id="appt-timeOnID" name="appt-timeOn">
+ </div>
+ <div class="cLightOff">
+Light off at time
+<input type="time" id="appt-timeOffID" name="appt-timeOff">
+<input type="button" onclick="importTemp()" value="Submit">
+ </div>
+<div class="cMoisture">
+Custom moisture
+Plant 1
+<input type="number" name="Moisture #1" id="m1" value="">
+Plant 2
+<input type="number" name="Moisture #2" id="m2" value="">
+Plant 3
+<input type="number" name="Moisture #3" id="m3" value="">
+</div>
+<div class="cMoisture45">
+Plant 4
+<input type="number" name="Moisture #4" id="m4" value="">
+Plant 5
+<input type="number" name="Moisture #5" id="m5" value="">
+Plant 6
+<input type="number" name="Moisture #6" id="m6" value="">
+<input type="button" onclick="importMoisture()" value="Submit">
+</div>
+
+<div class="cLights">Lights<br><br>
+<input type="checkbox" name="switch" onchange="checkLamp()" id="switch">
+</div>
+
+<script>
+
+var jsObj; //{float temp, float hum,boolean lamp, boolean pump, int analog1, int analog2, int analog3, int analog4, int analog5}
+
+function importTemp(){
+  var temp = document.getElementById("temperatureID").value;
+}
+function importHum(){
+  var hum = document.getElementById("humidityID").value;
+}
+function importTemp(){
+  var timeOn = document.getElementById("appt-timeOnID").value;
+  var timeOff = document.getElementById("appt-timeOffID").value;
+}
+function importMoisture(){
+  var moistureArray = [0,0,0,0,0,0];
+  var i;
+  for(i=1;i<=6;i++){
+    if(document.getElementById('m'+i).value != ""){
+    moistureArray[i-1]= document.getElementById('m'+i).value;
+  }
+}
+window.alert(moistureArray);
+}
+
+//Jquery for the toggle
+$("#switch").toggleSwitch();
+function checkLamp(){
+console.log($("#switch").is(":checked"));
+}
+
+
+
+function sendToArduino(){
+
+}
+</script>
+</body>
+</html>
